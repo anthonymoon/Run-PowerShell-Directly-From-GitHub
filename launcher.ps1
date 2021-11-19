@@ -72,7 +72,7 @@ function Button_OnClick() {
 $combo                    = New-Object system.Windows.forms.ComboBox
 $combo.Location           = New-Object System.Drawing.Point(12,153)
 $combo.Font               = New-Object System.Drawing.Font("Calibri",11)
-$combo.Width              = 300
+$combo.Width              = 450
 $combo.Height             = 47
 
 ## Add new menu items here
