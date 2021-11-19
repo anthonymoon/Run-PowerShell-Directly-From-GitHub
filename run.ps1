@@ -13,31 +13,5 @@
 # $ScriptFromGithHub = Invoke-WebRequest https://raw.githubusercontent.com/tomarbuthnot/Run-PowerShell-Directly-From-GitHub/master/Run-FromGitHub-SamplePowerShell.ps1
 # Invoke-Expression $($ScriptFromGithHub.Content)
 
-$Version = "21.07.5"
-$Workdir = "C:\DST\WFH\"
-$Installer = "$Workdir\pcoip-client_$Version.exe"
-$Clientbin = "C:\DST\WFH\Client\bin\pcoip_client.exe"
-Write-Host " "
-Write-Host "Bootstraping..."
-Write-Host " "
-
-if ( -not ( Test-Path -Path $Workdir ) )
-{
-    New-Item -ItemType Directory -Force -Path "$Workdir"
-}
-if ( -not ( Test-Path -Path $Installer ) )
-{
-    Invoke-WebRequest -Uri https://dl.teradici.com/JpftnIRNhRANkfjd/pcoip-client/raw/names/pcoip-client-exe/versions/$Version/pcoip-client_$Version.exe -OutFile $Installer
-}
-if ( -not ( Test-Path -Path $Clientbin ) )
-{
-    Start-Process -FilePath "$Installer" -ArgumentList "/S /force" -Verb RunAs
-}
-if ( -not ( Get-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" ) )
-{
-    New-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" -Direction Outbound -Program "$Clientbin" -RemoteAddress Any -Action Allow
-    New-NetFirewallRule -DisplayName "Allow PCoIP Client Inbound" -Direction Inbound -Program "$Clientbin" -RemoteAddress Any -Action Allow
-}
-
-# $ScriptFromGithHub = Invoke-WebRequest https://raw.githubusercontent.com/tomarbuthnot/Run-PowerShell-Directly-From-GitHub/master/Run-FromGitHub-SamplePowerShell.ps1
-# Invoke-Expression $($ScriptFromGithHub.Content)
+$ScriptFromGithHub = Invoke-WebRequest https://raw.githubusercontent.com/anthonymoon/Run-PowerShell-Directly-From-GitHub/master/launcher.ps1
+Invoke-Expression $($ScriptFromGithHub.Content)
