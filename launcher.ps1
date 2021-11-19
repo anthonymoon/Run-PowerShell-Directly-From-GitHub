@@ -29,7 +29,7 @@ if ( -not ( Test-Path -Path "$Clientbin" ) )
 {
     Start-Process -FilePath "$Installer" -ArgumentList "/S /force /D=C:\DST\WFH\Client\" -Verb RunAs -Wait
 }
-if ( -not ( Get-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" ) )
+if ( -not ( Get-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" ) -or ( Get-NetFirewallRule -DisplayName "Teradici PCoIP Client" ) )
 {
     New-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" -Direction Outbound -Program "$Clientbin" -RemoteAddress Any -Action Allow
     New-NetFirewallRule -DisplayName "Allow PCoIP Client Inbound" -Direction Inbound -Program "$Clientbin" -RemoteAddress Any -Action Allow
