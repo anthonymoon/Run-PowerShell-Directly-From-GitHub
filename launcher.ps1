@@ -78,7 +78,6 @@ $label.Location           = New-Object System.Drawing.Point(12,135)
 $label.Size               = New-Object System.Drawing.Size(280,20)
 $label.Font               = New-Object System.Drawing.Font("Calibri",11)
 $label.Text               = 'Please Select Session Options:'
-$form.Controls.Add($label)
 
 $button.Add_Click({ Button_OnClick ; $form.Close()})
 
