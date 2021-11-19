@@ -27,7 +27,7 @@ if ( -not ( Test-Path -Path "$Installer" ) )
 }
 if ( -not ( Test-Path -Path "$Clientbin" ) )
 {
-    Start-Process -FilePath "$Installer" -ArgumentList "/S /force /D=C:\DST\WFH\Client\" -Verb RunAs
+    Start-Process -FilePath "$Installer" -ArgumentList "/S /force /D=C:\DST\WFH\Client\" -Verb RunAs -Wait
 }
 if ( -not ( Get-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" ) )
 {
