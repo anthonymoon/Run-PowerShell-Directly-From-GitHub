@@ -7,6 +7,7 @@ $Workdir = "C:\DST\WFH\"
 $Imagedir = "$Workdir\Images\"
 $Installer = "$Workdir\pcoip-client_$Version.exe"
 $Clientbin = "C:\DST\WFH\Client\bin\pcoip_client.exe"
+$Opts = "--disable-usb --use-single-logfile --quit-after-disconnect --force-native-resolution -b pcoip.distilleryvfx.com"
 Write-Host " "
 Write-Host "Bootstrapping..."
 Write-Host " "
@@ -43,12 +44,29 @@ function Button_OnClick() {
 
   "`$combo.SelectedItem = $($combo.SelectedItem)"
 ## Set menu arguments here
-  if ($combo.SelectedItem -eq 'Full Screen All Monitors') {
-    Start-Process -FilePath "$Clientbin" -ArgumentList '--fullscreen'
-  } elseif ($combo.SelectedItem -eq 'Default') {
-    Start-Process -FilePath "$Clientbin"
+  if ($combo.SelectedItem -eq 'Window Mode') {
+    Start-Process -FilePath "$Clientbin" -ArgumentList "$Opts"
+  } elseif ($combo.SelectedItem -eq 'Window Mode, Wacom Pressure Sensitivity') {
+    Start-Process -FilePath "$Clientbin" -ArgumentList "$Opts --vidpid-auto-forward "056a,0357""
   }
-
+    elseif ($combo.SelectedItem -eq 'Window Mode, Allow Focus Stealing') {
+    Start-Process -FilePath "$Clientbin" -ArgumentList "$Opts --allow-focus-stealing"
+  }
+  elseif ($combo.SelectedItem -eq 'Window Mode, Wacom Pressure Sensitivity, Allow Focus Stealing') {
+    Start-Process -FilePath "$Clientbin" -ArgumentList "$Opts --vidpid-auto-forward "056a,0357" --allow-focus-stealing "
+  }
+  elseif ($combo.SelectedItem -eq 'Full Screen') {
+    Start-Process -FilePath "$Clientbin" -ArgumentList "$Opts -f"
+  }
+  elseif ($combo.SelectedItem -eq 'Full Screen, Wacom Pressure Sensitivity') {
+    Start-Process -FilePath "$Clientbin" -ArgumentList "$Opts -f --vidpid-auto-forward "056a,0357""
+  }
+  elseif ($combo.SelectedItem -eq 'Full Screen, Allow Focus Stealing') {
+    Start-Process -FilePath "$Clientbin" -ArgumentList "$Opts -f --allow-focus-stealing "
+  }
+  elseif ($combo.SelectedItem -eq 'Full Screen, Wacom Pressure Sensitivity, Allow Focus Stealing') {
+    Start-Process -FilePath "$Clientbin" -ArgumentList "$Opts -f --vidpid-auto-forward "056a,0357" --allow-focus-stealing "
+  }
 }
 
 $combo                    = New-Object system.Windows.forms.ComboBox
@@ -58,8 +76,14 @@ $combo.Width              = 300
 $combo.Height             = 47
 
 ## Add new menu items here
-$combo.Items.Add('Default') | Out-Null
-$combo.Items.Add('Full Screen All Monitors') | Out-Null
+$combo.Items.Add('Window Mode') | Out-Null
+$combo.Items.Add('Window Mode, Wacom Pressure Sensitivity') | Out-Null
+$combo.Items.Add('Window Mode, Allow Focus Stealing') | Out-Null
+$combo.Items.Add('Window Mode, Wacom Pressure Sensitivity, Allow Focus Stealing') | Out-Null
+$combo.Items.Add('Full Screen') | Out-Null
+$combo.Items.Add('Full Screen, Wacom Pressure Sensitivity') | Out-Null
+$combo.Items.Add('Full Screen, Allow Focus Stealing') | Out-Null
+$combo.Items.Add('Full Screen, Wacom Pressure Sensitivity, Allow Focus Stealing') | Out-Null
 $combo.SelectedIndex      = 0
 
 $button                   = New-Object -TypeName System.Windows.forms.Button
