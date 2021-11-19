@@ -8,7 +8,7 @@ $Imagedir = "$Workdir\Images\"
 $Installer = "$Workdir\pcoip-client_$Version.exe"
 $Clientbin = "C:\DST\WFH\Client\bin\pcoip_client.exe"
 Write-Host " "
-Write-Host "Bootstraping..."
+Write-Host "Bootstrapping..."
 Write-Host " "
 
 if ( -not ( Test-Path -Path "$Workdir" ) )
@@ -27,7 +27,7 @@ if ( -not ( Test-Path -Path "$Installer" ) )
 }
 if ( -not ( Test-Path -Path "$Clientbin" ) )
 {
-    Start-Process -FilePath "$Installer" -ArgumentList "/S /force" -Verb RunAs
+    Start-Process -FilePath "$Installer" -ArgumentList "/S /force /D=C:\DST\WFH\Client\" -Verb RunAs
 }
 if ( -not ( Get-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" ) )
 {
