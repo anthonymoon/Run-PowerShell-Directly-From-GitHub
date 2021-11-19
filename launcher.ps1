@@ -13,11 +13,11 @@ Write-Host " "
 
 if ( -not ( Test-Path -Path "$Workdir" ) )
 {
-    New-Item -ItemType Directory -Force -Path "$Workdir"
+    New-Item -ItemType Directory -Force -Path "$Workdir" | Out-Null
 }
 if ( -not ( Test-Path -Path "$Imagedir" ) )
 {
-    New-Item -ItemType Directory -Force -Path "$Imagedir"
+    New-Item -ItemType Directory -Force -Path "$Imagedir" | Out-Null
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/wfh/master/Images/DST_LOGO.png -OutFile $Imagedir/DST_LOGO.png
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/wfh/master/Images/distilleryvfx.ico -OutFile $Imagedir/distilleryvfx.ico
 }
@@ -27,13 +27,17 @@ if ( -not ( Test-Path -Path "$Installer" ) )
 }
 if ( -not ( Test-Path -Path "$Clientbin" ) )
 {
-    Start-Process -FilePath "$Installer" -ArgumentList "/S /force /D=C:\DST\WFH\Client\" -Verb RunAs -Wait
+    Start-Process -FilePath "$Installer" -ArgumentList "/S /force /D=C:\DST\WFH\Client\" -Verb RunAs -Wait | Out-Null
 }
 if ( -not ( Get-NetFirewallRule -DisplayName "*PCoIP*" ) )
 {
-    New-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" -Direction Outbound -Program "$Clientbin" -RemoteAddress Any -Action Allow
-    New-NetFirewallRule -DisplayName "Allow PCoIP Client Inbound" -Direction Inbound -Program "$Clientbin" -RemoteAddress Any -Action Allow
+    New-NetFirewallRule -DisplayName "Allow PCoIP Client Outbound" -Direction Outbound -Program "$Clientbin" -RemoteAddress Any -Action Allow | Out-Null
+    New-NetFirewallRule -DisplayName "Allow PCoIP Client Inbound" -Direction Inbound -Program "$Clientbin" -RemoteAddress Any -Action Allow | Out-Null
 }
+
+Write-Host " "
+Write-Host "Starting..."
+Write-Host " "
 
 function Button_OnClick() {
 
@@ -89,7 +93,6 @@ $form.formBorderStyle     = 'Fixed3D'
 $form.MaximizeBox         = $false
 $form.TopMost             = $true
 $form.StartPosition       = [System.Windows.forms.formStartPosition]::CenterScreen
-
 
 $form.Controls.Add($combo)
 $form.Controls.Add($button)
