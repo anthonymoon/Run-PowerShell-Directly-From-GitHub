@@ -18,8 +18,8 @@ if ( -not ( Test-Path -Path "$Workdir" ) )
 if ( -not ( Test-Path -Path "$Imagedir" ) )
 {
     New-Item -ItemType Directory -Force -Path "$Imagedir"
-    Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/Run-PowerShell-Directly-From-GitHub/master/Images/DST_LOGO.png -OutFile $Imagedir/DST_LOGO.png
-    Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/Run-PowerShell-Directly-From-GitHub/master/Images/distilleryvfx.ico -OutFile $Imagedir/distilleryvfx.ico
+    Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/wfh/master/Images/DST_LOGO.png -OutFile $Imagedir/DST_LOGO.png
+    Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/wfh/master/Images/distilleryvfx.ico -OutFile $Imagedir/distilleryvfx.ico
 }
 if ( -not ( Test-Path -Path "$Installer" ) )
 {

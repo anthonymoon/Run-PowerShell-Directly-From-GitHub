@@ -13,5 +13,5 @@
 # $ScriptFromGithHub = Invoke-WebRequest https://raw.githubusercontent.com/tomarbuthnot/Run-PowerShell-Directly-From-GitHub/master/Run-FromGitHub-SamplePowerShell.ps1
 # Invoke-Expression $($ScriptFromGithHub.Content)
 
-$ScriptFromGithHub = Invoke-WebRequest https://raw.githubusercontent.com/anthonymoon/Run-PowerShell-Directly-From-GitHub/master/launcher.ps1
+$ScriptFromGithHub = Invoke-WebRequest https://raw.githubusercontent.com/anthonymoon/wfh/master/launcher.ps1
 Invoke-Expression $($ScriptFromGithHub.Content)
