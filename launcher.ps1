@@ -45,15 +45,15 @@ function Button_OnClick() {
   "`$combo.SelectedItem = $($combo.SelectedItem)"
 ## Set menu arguments here
   if ($combo.SelectedItem -eq 'Window Mode') {
-    Start-Process -FilePath "$Clientbin" -ArgumentList '--disable-usb --use-single-logfile --quit-after-disconnect --force-native-resolution -b pcoip.distilleryvfx.com'
+    Start-Process -FilePath "$Clientbin" -ArgumentList '--disable-usb --use-single-logfile --quit-after-disconnect -b pcoip.distilleryvfx.com'
   } elseif ($combo.SelectedItem -eq 'Window Mode - Wacom Pressure Sensitivity') {
-    Start-Process -FilePath "$Clientbin" -ArgumentList '--disable-usb --use-single-logfile --quit-after-disconnect --force-native-resolution -b pcoip.distilleryvfx.com --vidpid-auto-forward "056a,0357"'
+    Start-Process -FilePath "$Clientbin" -ArgumentList '--use-single-logfile --quit-after-disconnect -b pcoip.distilleryvfx.com --vidpid-auto-forward "056a,0357"'
   }
   elseif ($combo.SelectedItem -eq 'Full Screen') {
-    Start-Process -FilePath "$Clientbin" -ArgumentList '--disable-usb --use-single-logfile --quit-after-disconnect --force-native-resolution -b pcoip.distilleryvfx.com -f'
+    Start-Process -FilePath "$Clientbin" -ArgumentList '--disable-usb --use-single-logfile --quit-after-disconnect -b pcoip.distilleryvfx.com -f'
   }
   elseif ($combo.SelectedItem -eq 'Full Screen - Wacom Pressure Sensitivity') {
-    Start-Process -FilePath "$Clientbin" -ArgumentList '--disable-usb --use-single-logfile --quit-after-disconnect --force-native-resolution -b pcoip.distilleryvfx.com -f --vidpid-auto-forward "056a,0357"'
+    Start-Process -FilePath "$Clientbin" -ArgumentList '--use-single-logfile --quit-after-disconnect -b pcoip.distilleryvfx.com -f --vidpid-auto-forward "056a,0357"'
   }
 }
 
