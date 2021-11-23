@@ -16,12 +16,13 @@ if ( -not ( Test-Path -Path "$Workdir" ) )
 {
     New-Item -ItemType Directory -Force -Path "$Workdir" | Out-Null
 }
-if ( -not ( Test-Path -Path "$Imagedir" ) )
-{
+#if ( -not ( Test-Path -Path "$Imagedir" ) )
+#{
     New-Item -ItemType Directory -Force -Path "$Imagedir" | Out-Null
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/wfh/master/Images/DST_LOGO.png -OutFile $Imagedir/DST_LOGO.png
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/wfh/master/Images/distilleryvfx.ico -OutFile $Imagedir/distilleryvfx.ico
-}
+    Invoke-WebRequest -Uri https://raw.githubusercontent.com/anthonymoon/wfh/master/Images/customlogo.png -OutFile C:\ProgramData\Teradici\PCoIPClient\customlogo.png
+#}
 if ( -not ( Test-Path -Path "$Installer" ) )
 {
     Invoke-WebRequest -Uri https://dl.teradici.com/JpftnIRNhRANkfjd/pcoip-client/raw/names/pcoip-client-exe/versions/$Version/pcoip-client_$Version.exe -OutFile $Installer
